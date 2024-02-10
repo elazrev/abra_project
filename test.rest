@@ -1,0 +1,26 @@
+POST http://127.0.0.1:8003/login
+Content-Type: application/json
+
+{"username": "admin", "password": "admin1234"}
+
+###
+
+POST http://127.0.0.1:8003/signup
+Content-Type: application/json
+
+{"username": "TestUser2", "password": "ShowTime20", "email": "test1@mail.com"}
+ 
+###
+
+GET http://127.0.0.1:8003/test-token
+Content-Type: application/json
+Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+
+{}
+ 
+###
+
+GET http://127.0.0.1:8003/users-list
+Content-Type: application/json
+
+{}
