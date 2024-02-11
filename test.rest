@@ -1,14 +1,20 @@
+# Login
 POST http://127.0.0.1:8003/login
 Content-Type: application/json
 
-{"username": "admin", "password": "admin1234"}
+
+{
+  "username": "admin",
+  "password": "admin1234"
+}
 
 ###
 
 POST http://127.0.0.1:8003/signup
 Content-Type: application/json
 
-{"username": "TestUser2", "password": "ShowTime20", "email": "test1@mail.com"}
+
+{"username": "TestUser4", "password": "ShowTime40", "email": "test4@mail.com"}
  
 ###
 
@@ -24,3 +30,47 @@ GET http://127.0.0.1:8003/users-list
 Content-Type: application/json
 
 {}
+
+###
+
+POST http://127.0.0.1:8003/messages_center/all_messages
+Content-Type: application/json
+Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+
+{}
+
+###
+
+GET  http://127.0.0.1:8003/messages_center/unread_messages
+Content-Type: application/json
+Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+
+{}
+
+###
+
+GET http://127.0.0.1:8003/messages_center/message_details/1/
+Content-Type: application/json
+Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+
+{}
+
+###
+
+POST http://127.0.0.1:8003/messages_center/message_delete/1/
+Content-Type: application/json
+Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+
+{}
+
+###
+
+POST http://127.0.0.1:8003/messages_center/create_message/
+Content-Type: application/json
+Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+
+{
+    "receiver": "TestUser2",
+    "subject": "Test Message",
+    "content": "This is a test message"
+}

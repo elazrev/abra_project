@@ -15,3 +15,7 @@ urlpatterns = [
     path('messages_center/', include('messages_center.urls')),
     
 ]
+
+urlpatterns += [
+    path('api-auth/', include('rest_framework.urls')),
+]
