@@ -76,4 +76,4 @@ def delete_message(request, pk):
     else:
         message = get_object_or_404(Message, pk=pk)
     message.delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response({"details": "deleted sucssesfully!"},status=status.HTTP_204_NO_CONTENT)
