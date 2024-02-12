@@ -1,7 +1,6 @@
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from .models import Message
@@ -38,27 +37,24 @@ def all_messages(request):
 @permission_classes([IsAuthenticated])  
 def unread_messages(request):
     # Retrieve all unread messages for the current user
-    user = request.user
-    if user:
-        unread_messages = Message.objects.filter(receiver=user, unread=True)
-        serializer = MessageListSerializer(unread_messages, many=True)
+    unread_messages = Message.objects.filter(receiver=request.user, unread=True)
+    serializer = MessageListSerializer(unread_messages, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])  
 def message_details(request, pk):
     # Retrieve details of a specific message for the current user
-    user = request.user
     message = get_object_or_404(Message, pk=pk)
     
-    if request.user.is_superuser or message.receiver == user:
+    if request.user.is_superuser or message.receiver == request.user:
         # Check if the request user is the receiver of the message
-        if user == message.receiver:
+        if request.user == message.receiver:
             # Update the status of the message to "read"
             message.unread = False
             message.save()
     else:
-        return Response({"details": f"no permmisions to {user} for this message"}, status=status.HTTP_401_UNAUTHORIZED)
+        return Response({"details": f"no permissions to {request.user} for this message"}, status=status.HTTP_401_UNAUTHORIZED)
  
     # Serialize the message details along with the receiver's username
     serializer = MessageDetailSerializer(instance=message)
@@ -69,10 +65,8 @@ def message_details(request, pk):
 def delete_message(request, pk):
     # Delete a specific message for the current user
     if not request.user.is_superuser:
-        user = request.user
-        message = get_object_or_404(Message, pk=pk, receiver=user)
-        message.delete()
+        message = get_object_or_404(Message, pk=pk, receiver=request.user)
     else:
-        message = message = get_object_or_404(Message, pk=pk)
-        message.delete()
+        message = get_object_or_404(Message, pk=pk)
+    message.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
