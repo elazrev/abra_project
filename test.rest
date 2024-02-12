@@ -1,16 +1,16 @@
 # Login
-POST http://127.0.0.1:8003/login
+POST http://13.60.32.234:8000/login
 Content-Type: application/json
 
 
 {
-  "username": "admin",
-  "password": "admin1234"
+  "username": "TestUser2",
+  "password": "ShowTime20"
 }
 
 ###
 
-POST http://127.0.0.1:8003/signup
+POST http://13.60.32.234:8000/signup
 Content-Type: application/json
 
 
@@ -18,59 +18,59 @@ Content-Type: application/json
  
 ###
 
-GET http://127.0.0.1:8003/test-token
+GET http://13.60.32.234:8000/test-token
 Content-Type: application/json
-Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+Authorization: Token 5bdf59d57f8ac14fc27f31faf44c100da9e5990d
 
 {}
  
 ###
 
-GET http://127.0.0.1:8003/users-list
+GET http://13.60.32.234:8000/users-list
 Content-Type: application/json
 
 {}
 
 ###
 
-POST http://127.0.0.1:8003/messages_center/all_messages
+GET  http://13.60.32.234:8000/messages_center/all_messages
 Content-Type: application/json
-Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+Authorization: Token 5bdf59d57f8ac14fc27f31faf44c100da9e5990d
 
 {}
 
 ###
 
-GET  http://127.0.0.1:8003/messages_center/unread_messages
+GET  http://13.60.32.234:8000/messages_center/unread_messages
 Content-Type: application/json
-Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+Authorization: Token e02b045be0217d6f78ada2f2c5c05119716ee629
 
 {}
 
 ###
 
-GET http://127.0.0.1:8003/messages_center/message_details/1/
+GET http://13.60.32.234:8000/messages_center/message_details/3/
 Content-Type: application/json
-Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+Authorization: Token 5bdf59d57f8ac14fc27f31faf44c100da9e5990d
 
 {}
 
 ###
 
-POST http://127.0.0.1:8003/messages_center/message_delete/1/
+POST http://13.60.32.234:8000/messages_center/message_delete/1/
 Content-Type: application/json
-Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+Authorization: Token 49c3530d0ed2d71fb9ce220248cbf6087213e0fa
 
 {}
 
 ###
 
-POST http://127.0.0.1:8003/messages_center/create_message/
+POST http://13.60.32.234:8000/messages_center/create_message/
 Content-Type: application/json
-Authorization: Token c09ce1fd557a502e566afa36e10c5dda5eb1ae6b
+Authorization: Token 49c3530d0ed2d71fb9ce220248cbf6087213e0fa
 
 {
-    "receiver": "TestUser2",
-    "subject": "Test Message",
-    "content": "This is a test message"
+    "receiver": "admin",
+    "subject": "Hello",
+    "content": "How are you?"
 }

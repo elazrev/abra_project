@@ -25,16 +25,17 @@ def create_message(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])  
 def all_messages(request):
-    # Check if the user is a superuser
+    # If the user is a superuser, return all messages
     if request.user.is_superuser:
-        # If the user is a superuser, return all messages
         messages = Message.objects.all()
     else:
-        # If the user is not a superuser, retrieve messages where the sender or receiver is the current user
+        # Filter messages where the sender or receiver is the current user
         messages = Message.objects.filter(receiver=request.user) | Message.objects.filter(sender=request.user)
 
+    # Serialize the filtered messages
     serializer = MessageListSerializer(messages, many=True)
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication, TokenAuthentication])
