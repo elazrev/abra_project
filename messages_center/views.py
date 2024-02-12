@@ -72,7 +72,7 @@ def message_details(request, pk):
 def delete_message(request, pk):
     # Delete a specific message for the current user
     if not request.user.is_superuser:
-        message = get_object_or_404(Message, pk=pk, receiver=request.user)
+        message = get_object_or_404(Message, pk=pk, receiver=request.user) or get_object_or_404(Message, pk=pk, sender=request.user)
     else:
         message = get_object_or_404(Message, pk=pk)
     message.delete()
