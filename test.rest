@@ -62,7 +62,7 @@ Authorization: Token {{token}}
 
 ###
 
-POST http://13.60.32.234:8000/messages_center/message_delete/1/
+POST http://13.60.32.234:8000/messages_center/message_delete/6/
 Content-Type: application/json
 Authorization: Token {{token}}
 
