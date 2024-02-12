@@ -22,6 +22,7 @@ def create_message(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])  
 def all_messages(request):
     # Check if the user is a superuser
@@ -36,6 +37,7 @@ def all_messages(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])  
 def unread_messages(request):
     # Retrieve all unread messages for the current user
@@ -44,6 +46,7 @@ def unread_messages(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])  
 def message_details(request, pk):
     # Retrieve details of a specific message for the current user
@@ -63,6 +66,7 @@ def message_details(request, pk):
     return Response(serializer.data)
 
 @api_view(['DELETE'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])  
 def delete_message(request, pk):
     # Delete a specific message for the current user
